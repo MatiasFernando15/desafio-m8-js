@@ -1,3 +1,4 @@
+// Ejercicio del modulo anterior
 const planesDeCredito = [
     { Nombre: "Plan 001", Capital: 150000, Plazo: 30, Tasa: 0.15 },
     { Nombre: "Plan 002", Capital: 300000, Plazo: 180, Tasa: 0.10 },
@@ -32,3 +33,30 @@ for (let i = 0; i < informacionCreditos.length; i++) {
     console.log(informacionCreditos[i]);
 }
 console.log("Suma total de intereses:", sumaTotalIntereses);
+
+// -----------------------------------------------------------------
+//Ejercicio del modulo actual
+
+function calcularInteres(capital, plazo, tasa) {
+    return (capital * plazo * tasa) / 100;
+}
+function agregarInteresAInversiones(inversiones) {
+    const inversionesConInteres = [];
+
+    for (let i = 0; i < inversiones.length; i++) {
+    const inversion = inversiones[i];
+    const interés = calcularInteres(inversion.Capital, inversion.Plazo, inversion.Tasa);
+    const inversionConInteres = {
+        ...inversion,
+        Interes: interés
+    };
+
+    inversionesConInteres.push(inversionConInteres);
+    }
+    return inversionesConInteres;
+}
+
+const inversionesConInteres = agregarInteresAInversiones(planesDeCredito);
+
+console.log("Información de las inversiones con interés:");
+console.log(inversionesConInteres);

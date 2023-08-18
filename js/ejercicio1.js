@@ -1,3 +1,5 @@
+// Ejercicio del anterior módulo
+
 function calcularSaldoFlujoCaja(flujos) {
     let saldo = 0;
 
@@ -35,11 +37,41 @@ const flujoDeCaja = [
 ];
 
 const saldoTotal = calcularSaldoFlujoCaja(flujoDeCaja);
-const resultado = determinarGananciasPerdidas(saldoTotal);
+const resultadoE1 = determinarGananciasPerdidas(saldoTotal);
 
 console.log("Flujo de caja del último año:");
 for (let i = 0; i < flujoDeCaja.length; i++) {
     console.log(`${flujoDeCaja[i].Mes}: Ingreso - ${flujoDeCaja[i].Ingreso || 0},
     Egreso - ${flujoDeCaja[i].Egreso || 0}`);
 }
-console.log("Resultado:", resultado);
+console.log("Resultado:", resultadoE1);
+
+// -------------------------------------------------------------------------------
+//Ejercicio de este módulo
+
+function analizarFlujoCaja(flujos) {
+    let saldo = 0;
+
+    for (let i = 0; i < flujos.length; i++) {
+    saldo += flujos[i].Ingreso || 0;
+    saldo -= flujos[i].Egreso || 0;
+    }
+
+    if (saldo > 0) {
+    return 1;
+    } else if (saldo < 0) {
+    return -1;
+    } else {
+    return 0;
+    }
+}
+
+const resultado = analizarFlujoCaja(flujoDeCaja);
+
+if (resultado === 1) {
+console.log("Hay ganancias");
+} else if (resultado === -1) {
+console.log("Hay pérdidas");
+} else {
+console.log("Ingresos iguales a egresos (equilibrio)");
+}
